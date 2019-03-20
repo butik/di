@@ -2,6 +2,7 @@ package di
 
 import (
 	"fmt"
+	"github.com/pkg/errors"
 )
 
 // containerGetter contains all the functions that are useful
@@ -11,7 +12,7 @@ type containerGetter struct{}
 func (g *containerGetter) Get(ctn *container, name string) interface{} {
 	obj, err := ctn.SafeGet(name)
 	if err != nil {
-		panic(err)
+		panic(errors.Wrap(err, fmt.Sprintf("in container %v", name)))
 	}
 
 	return obj
