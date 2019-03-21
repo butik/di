@@ -13,7 +13,7 @@ type containerUnscopedGetter struct{}
 func (g *containerUnscopedGetter) UnscopedGet(ctn *container, name string) interface{} {
 	obj, err := ctn.UnscopedSafeGet(name)
 	if err != nil {
-		panic(err)
+		panic(err.Error())
 	}
 
 	return obj

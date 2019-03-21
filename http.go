@@ -25,7 +25,7 @@ func HTTPMiddleware(h http.HandlerFunc, app Container, logFunc func(msg string))
 		// create a request container from tha app container
 		ctn, err := app.SubContainer()
 		if err != nil {
-			panic(err)
+			panic(err.Error())
 		}
 		defer func() {
 			if err := ctn.Delete(); err != nil && logFunc != nil {

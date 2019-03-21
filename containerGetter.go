@@ -2,6 +2,7 @@ package di
 
 import (
 	"fmt"
+
 	"github.com/pkg/errors"
 )
 
@@ -12,7 +13,7 @@ type containerGetter struct{}
 func (g *containerGetter) Get(ctn *container, name string) interface{} {
 	obj, err := ctn.SafeGet(name)
 	if err != nil {
-		panic(errors.Wrap(err, fmt.Sprintf("in container %v", name)))
+		panic(errors.Wrap(err, fmt.Sprintf("in container %v", name)).Error())
 	}
 
 	return obj
